@@ -3,7 +3,7 @@
     "displayName": "VSRRunner",
     "description": "Visual Studio Code extension for running R scripts.",
     "icon": "media/logo.png",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "publisher": "jwk",
     "engines": {
         "vscode": "^1.31.0"
@@ -13,10 +13,10 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/jwkruisselbrink/vscode-rrunner-extension"
+        "url": "https://github.com/jwkruisselbrink/vsrrunner-extension"
     },
     "bugs": {
-        "url": "https://github.com/jwkruisselbrink/vscode-rrunner-extension/issues"
+        "url": "https://github.com/jwkruisselbrink/vsrrunner-extension/issues"
     },
     "license": "MIT",
     "categories": [

@@ -29,7 +29,7 @@ export class RScriptRunner {
         const cmd = `"${pathR}"`;
         const args = [
             `CMD BATCH`,
-            `--quiet`,
+            this.getROptions(),
             `"${fileIn}"`
         ];
         let execCmd = `${cmd} ${args.join(" ")}`;
@@ -83,5 +83,11 @@ export class RScriptRunner {
         }
         //let pathRScript = path.join(path.dirname(pathR), "RTerm.exe");
         return pathR;
+    }
+
+    public getROptions(): string {
+        let config = workspace.getConfiguration("r");
+        let result = config.get("rterm.option") as string[];
+        return result.join(" ");
     }
 }

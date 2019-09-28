@@ -144,11 +144,23 @@ async function openOutputFile(fileName: string, sourceViewColumn: vscode.ViewCol
     }
 }
 
-function msToHMS(ms : number): string {
+function msToHMS(ms) {
     let seconds = ms / 1000;
     let hours = Math.trunc(seconds / 3600);
     seconds = seconds % 3600;
     let minutes = Math.trunc(seconds / 60);
     seconds = seconds % 60;
-    return hours + ":" + minutes + ":" + seconds;
+    let roundSec = Math.trunc(seconds);
+    let milliSec = Math.round(10 * (seconds - roundSec));
+    let hm = zeroPad(minutes, 2);
+    if (hours > 0) {
+        hm = zeroPad(hours, 2) + ":" + zeroPad(minutes, 2);
+    }
+    let sec = zeroPad(roundSec, 2) + "." + milliSec;
+    return hm + ":" + sec;
+}
+
+function zeroPad(num, places) {
+    var zero = places - num.toString().length + 1;
+    return Array(+(zero > 0 && zero)).join("0") + num;
 }

@@ -22,12 +22,6 @@ export function activate(context: vscode.ExtensionContext) {
             switchSourceAndOutput();
         })
     );
-
-    context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('vsrrunner.copyTable', () => {
-            copyTable();
-        })
-    );
 }
 
 // method called when the extension is deactivated
@@ -144,28 +138,6 @@ async function openOutputFile(fileName: string, sourceViewColumn: vscode.ViewCol
     } else {
         await vscode.workspace.openTextDocument(fileName).then(doc => {
             vscode.window.showTextDocument(doc, { preview: false, viewColumn: viewColumns[0], preserveFocus: false });
-        });
-    }
-}
-
-function copyTable(): void {
-    // Get the active text editor
-    let editor = vscode.window.activeTextEditor;
-    if (editor) {
-        let document = editor.document;
-        let selection = editor.selection;
-        let word = document.getText(selection);
-
-        let lines = word
-            .split(/\r?\n/)
-            .map(line => {
-                return line.trimLeft().replace(/  +/g, ';');
-            })
-            .join("\n");
-
-        ncp.copy(lines, function () {
-            let msg = "Copied semicolon delimited string to clipboard.";
-            vscode.window.showInformationMessage(msg);
         });
     }
 }

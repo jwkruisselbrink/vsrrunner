@@ -48,10 +48,6 @@
                 }
             },
             {
-                "command": "vsrrunner.copyTable",
-                "title": "VSRRunner: Copy semicolon delimited string to clipboard"
-            },
-            {
                 "command": "vsrrunner.switchToSource",
                 "title": "VSRRunner: switch to source file",
                 "icon": {
@@ -61,12 +57,6 @@
             }
         ],
         "menus": {
-            "editor/context": [
-                {
-                    "command": "vsrrunner.copyTable",
-                    "when": "editorLangId == r.output"
-                }
-            ],
             "editor/title": [
                 {
                     "command": "vsrrunner.runRScript",
@@ -99,11 +89,6 @@
             {
                 "command": "vsrrunner.switchToSource",
                 "key": "Alt+n",
-                "when": "editorTextFocus && editorLangId == r.output"
-            },
-            {
-                "command": "vsrrunner.copyTable",
-                "key": "Ctrl+Shift+c",
                 "when": "editorTextFocus && editorLangId == r.output"
             }
         ]

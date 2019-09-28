@@ -38,13 +38,22 @@ export class RScriptRunner {
                 this._rScriptHook = null;
                 this._isRunning = false;
                 if (this._isAborted) {
-                    return reject(`R script run cancelled`);
+                    return reject({
+                        StatusCode: error.code,
+                        Error: stderr
+                    });
                 }
                 if (error) {
-                    return reject(`R script run failed (error code ${error.code}).`);
+                    return reject({
+                        StatusCode: error.code,
+                        Error: stderr
+                    });
                 }
                 if (stderr) {
-                    return reject(`R script run failed (error code ${error.code}).`);
+                    return reject({
+                        StatusCode: error.code,
+                        Error: stderr
+                    });
                 }
                 resolve(stdout);
             });

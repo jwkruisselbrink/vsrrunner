@@ -79,7 +79,7 @@ async function runRScript(): Promise<void> {
             () => {
                 statusBarItem.hide();
                 let timerStop = Date.now();
-                let msg = `Finished running R script! Duration: ${msToHMS(timerStop - timerStart)}.`;
+                let msg = `R script run "${path.basename(filePath)}" completed! Duration: ${msToHMS(timerStop - timerStart)}.`;
                 RScriptOutputChannel.end(msg);
                 vscode.window.showInformationMessage(msg);
                 if (fs.existsSync(outPath)) {
@@ -88,8 +88,10 @@ async function runRScript(): Promise<void> {
             },
             (error) => {
                 statusBarItem.hide();
-                RScriptOutputChannel.error(error);
-                vscode.window.showErrorMessage(error);
+                let timerStop = Date.now();
+                let msg = `R script run "${path.basename(filePath)}" failed! Duration: ${msToHMS(timerStop - timerStart)}.`;
+                RScriptOutputChannel.error(msg);
+                vscode.window.showErrorMessage(msg);
                 if (fs.existsSync(outPath)) {
                     openOutputFile(outPath, viewColumn);
                 }

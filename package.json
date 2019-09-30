@@ -3,7 +3,7 @@
     "displayName": "VSRRunner",
     "description": "Visual Studio Code extension for running R scripts.",
     "icon": "media/logo.png",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "jwk",
     "engines": {
         "vscode": "^1.31.0"

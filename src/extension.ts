@@ -52,6 +52,7 @@ async function runRScript(): Promise<void> {
 
     const basename = path.basename(filePath, path.extname(filePath));
     const outPath = path.join(path.dirname(filePath), basename + ".Rout");
+    const outPathAlternative = filePath + ".Rout";
 
     if (rScriptRunner.isRunning()) {
         let msg = `R still running, cannot start another task.`;
@@ -84,6 +85,8 @@ async function runRScript(): Promise<void> {
                 vscode.window.showInformationMessage(msg);
                 if (fs.existsSync(outPath)) {
                     openOutputFile(outPath, viewColumn);
+                } else if (fs.existsSync(outPathAlternative)) {
+                    openOutputFile(outPathAlternative, viewColumn);
                 }
             },
             (error) => {
@@ -94,6 +97,8 @@ async function runRScript(): Promise<void> {
                 vscode.window.showErrorMessage(msg);
                 if (fs.existsSync(outPath)) {
                     openOutputFile(outPath, viewColumn);
+                } else if (fs.existsSync(outPathAlternative)) {
+                    openOutputFile(outPathAlternative, viewColumn);
                 }
             }
         );
